@@ -1,68 +1,112 @@
-# Sutainbuyant E-commerce
 
-Next.js App Router + TypeScript + Tailwind CSS storefront connected to the Sutainbuyant REST API.
+# Sutainbuyant Ecommerce
 
-## Requirements
-- Node.js 18.17+ (Node 20 LTS recommended)
+Sutainbuyant Ecommerce нь бүтээгдэхүүн үзэх, ангиллаар шүүх, хайх, сагсанд нэмэх болон захиалга хийх боломжтой онлайн худалдааны веб төсөл юм.
+
+## Ашигласан технологиуд
+
+- **Next.js 14** — веб аппликейшний framework
+- **React** — хэрэглэгчийн интерфэйс
+- **TypeScript** — төрөлжүүлсэн JavaScript
+- **Tailwind CSS** — интерфэйсийн загварчлал
+- **REST API** — backend сервертэй өгөгдөл солилцох
+- **ESLint** — кодын чанар шалгах
+
+## Шаардлага
+
+Төслийг ажиллуулахын тулд дараах програмууд суусан байна:
+
+- Node.js (төслийн Next.js хувилбарт нийцсэн хувилбар)
 - npm
+- Git (сонголтоор)
 
-## Run locally
+## Суулгах заавар
+
+### 1. Төслийн хавтас руу орох
+
 ```bash
-cp .env.example .env.local
+cd ~/Downloads/sutainbuyant-ecommerce
+```
+
+### 2. Сангуудыг суулгах
+
+```bash
 npm install
-npm run dev
-```
-Open http://localhost:3000.
-
-## API configuration
-`.env.local`:
-```env
-NEXT_PUBLIC_API_URL=https://job.sutainbuyant.com/api/v1
 ```
 
-Implemented API operations:
-- POST `/register`
-- POST `/login`
-- GET `/me`
-- POST `/logout`
-- GET `/shop/categories`
-- GET `/shop/categories/{id}` (client method available)
-- GET `/shop/tags`
-- GET `/shop/products` with documented query parameters
-- GET `/shop/products/{id}`
-- GET/PUT `/shop/profile`
-- PUT `/shop/profile/password`
-- GET/POST `/shop/orders`
-- GET `/shop/orders/{id}`
-- POST `/shop/orders/{id}/cancel`
+### 3. Хөгжүүлэлтийн сервер ажиллуулах
 
-## Important integration notes
-1. The API response schema was not supplied as a JSON/OpenAPI file. The API client therefore includes a small `unwrap` adapter for common list response envelopes. Inspect actual API responses and adjust `lib/api.ts`, `lib/types.ts`, and form payloads to match the server precisely.
-2. The login form currently stores the returned token in localStorage to make this starter usable in a browser-only setup. For production, move token handling to a server-managed session with a secure HttpOnly cookie and same-origin Route Handler proxy. Never store production secrets in client-accessible variables.
-3. Checkout is protected because `POST /shop/orders` requires Bearer authentication. It sends `customer_name`, `customer_phone`, `shipping_address`, `note`, and `items: [{ product_id, quantity }]`.
-4. Some API response details (image fields, order ID envelope, profile fields, order statuses, register schema) may differ. Verify with the actual Postman collection before production deployment.
-5. Product prices in the cart are display estimates from the product response; the backend must validate final stock/prices on order creation.
-6. Product detail currently displays related products when they are included in the returned response. Verify whether the API nests them under `related` or another field.
-7. API CORS/network settings must permit requests from the development origin. If browser CORS blocks requests, implement a Next.js Route Handler proxy and keep auth server-side.
-
-## Commands
 ```bash
 npm run dev
-npm run typecheck
+```
+
+### 4. Вебсайтыг нээх
+
+Хөтөч дээр дараах хаягаар орно:
+
+http://localhost:3000
+
+## Ашиглах боломжууд
+
+- Бүтээгдэхүүний жагсаалт харах
+- Бүтээгдэхүүн хайх, ангиллаар шүүх
+- Бүтээгдэхүүний дэлгэрэнгүй мэдээлэл харах
+- Сагсанд бүтээгдэхүүн нэмэх
+- Хэрэглэгч бүртгүүлэх, нэвтрэх
+- Захиалга үүсгэх
+- Миний захиалгуудын жагсаалт харах
+- Захиалгын дэлгэрэнгүй болон статус харах
+- Боломжтой тохиолдолд захиалга цуцлах
+- Хэрэглэгчийн профайл удирдах
+
+## API
+
+Backend API-ийн үндсэн хаяг:
+
+`https://job.sutainbuyant.com/api/v1`
+
+Ашиглагдах үндсэн endpoint-ууд:
+
+- `GET /shop/categories` — ангиллын жагсаалт
+- `GET /shop/products` — бүтээгдэхүүний жагсаалт
+- `GET /shop/products/{id}` — бүтээгдэхүүний дэлгэрэнгүй
+- `GET /shop/orders` — миний захиалгууд
+- `POST /shop/orders` — захиалга үүсгэх
+- `GET /shop/orders/{id}` — захиалгын дэлгэрэнгүй
+- `POST /shop/orders/{id}/cancel` — захиалга цуцлах
+
+Хэрэглэгчийн захиалга болон профайлын endpoint-ууд токен шаарддаг.
+
+## Production build
+
+Production хувилбар үүсгэх:
+
+```bash
 npm run build
 ```
 
-## Main routes
-- `/`
-- `/products`
-- `/products/[id]`
-- `/cart`
-- `/login`
-- `/register`
-- `/checkout`
-- `/orders`
-- `/orders/[id]`
-- `/profile`
+Production сервер ажиллуулах:
 
-This project is an implementation starter; run against the actual API, inspect response schemas, and complete security hardening before production use.
-# ecom-sutaibuynt
+```bash
+npm run start
+```
+
+## Төслийн бүтэц
+
+```text
+sutainbuyant-ecommerce/
+├── public/
+├── src/
+│   ├── app/
+│   ├── components/
+│   └── lib/
+├── package.json
+├── tailwind.config.ts
+└── README.md
+```
+
+## Тэмдэглэл
+
+- API сервер ажиллаж байгаа эсэхийг шалгана.
+- Нэвтрэх шаардлагатай үйлдлүүдэд хүчинтэй token ашиглана.
+- Бодит орчинд нууц түлхүүр болон token-ийг Git репозиторт оруулахгүй.
