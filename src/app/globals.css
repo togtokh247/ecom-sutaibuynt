@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f8fafc; color: #182230; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+button, input, select, textarea { font: inherit; }
+a { text-decoration: none; color: inherit; }
+.container-shell { width: min(1240px, calc(100% - 32px)); margin-inline: auto; }
+.field { min-height: 44px; width: 100%; border: 1px solid #dbe2ea; border-radius: 12px; padding: 10px 12px; background: white; color: #182230; outline: none; transition: border-color .2s, box-shadow .2s; }
+.field:focus { border-color: #818cf8; box-shadow: 0 0 0 3px rgba(99,102,241,.12); }
+.icon-button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border-radius: 13px; color: #475569; transition: background .2s, color .2s; }
+.icon-button:hover { background: #eef2ff; color: #4338ca; }
+.mobile-link { border-radius: 10px; padding: 12px; font-weight: 600; color: #475569; }
+.mobile-link:hover { background: #f1f5f9; }
+.card { border: 1px solid #e2e8f0; border-radius: 22px; background: white; box-shadow: 0 8px 30px rgba(24,34,48,.04); }
+.product-card { overflow: hidden; border: 1px solid #e8edf3; border-radius: 18px; background: white; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.product-card:hover { transform: translateY(-2px); border-color: #c7d2fe; box-shadow: 0 12px 32px rgba(24,34,48,.08); }
+.btn-primary { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 8px; border-radius: 13px; background: #4f46e5; padding: 11px 18px; color: white; font-weight: 750; transition: background .2s, transform .2s; }
+.btn-primary:hover { background: #4338ca; }
+.btn-primary:active { transform: scale(.99); }
+.btn-primary:disabled { opacity: .6; cursor: wait; }
+.btn-secondary { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; border: 1px solid #dbe2ea; border-radius: 12px; background: white; padding: 10px 14px; font-weight: 650; color: #334155; }
+.form-label { display: block; font-size: 13px; font-weight: 700; color: #334155; }
+.skeleton { animation: shimmer 1.5s infinite linear; background: linear-gradient(90deg,#eef2f7 25%,#f8fafc 50%,#eef2f7 75%); background-size: 200% 100%; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
