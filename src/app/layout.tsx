@@ -4,10 +4,9 @@ import Header from "@/src/components/header";
 import Footer from "@/src/components/footer";
 export const metadata: Metadata = {
   title: {
-    default: "Sutainbuyant — Онлайн дэлгүүр",
-    template: "%s | Sutainbuyant",
+    default: "e-comerce",
+    template: "%s | Ecomerce",
   },
-  description: "Бараагаа хялбар хайж, сагсанд нэмээд найдвартай захиалаарай.",
   metadataBase: new URL("https://job.sutainbuyant.com"),
 };
 export default function RootLayout({
